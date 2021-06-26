@@ -1,12 +1,12 @@
 ---
-author: Alison Hill
+author: Pallav Routh
 cascade:
-  author: Alison Hill
+  author: Pallav Routh
   categories:
-  - Theme Features
-  - R
+  - Sampling distribution
+  - Endogeneity
   layout: single-series
-  series: A Spoonful of Hugo
+  series: Miscellaneous
   show_author_byline: true
   show_post_date: true
   sidebar:
@@ -16,26 +16,22 @@ cascade:
     text_link_url: ""
     text_series_label: In this series
   tags:
-  - hugo-site
+  - Econometrics
 description: |
-  A forking fun new feature for series.
+  A series on miscellaneous topics in econometrics
 layout: list-sidebar
 show_author_byline: true
 show_post_date: true
 show_post_thumbnail: false
 sidebar:
-  author: Alison Hill
+  author: Pallav Routh
   description: |
-    A forking fun new feature for series.
-    Even this sidebar offers a ton of customizations!
-
-    Check out the _index.md file in the /blog/spoonful-series
-    folder to edit this content.
+    A series on miscellaneous topics in econometrics.
   show_sidebar_adunit: false
   text_link_label: ""
   text_link_url: ""
-  title: A Spoonful of Hugo
-title: A Spoonful of Hugo
+  title: Miscellaneous
+title: Miscellaneous
 ---
 
 ** No content below YAML for the series _index. This file is a leaf bundle, and provides settings for the listing page layout and sidebar content.**
