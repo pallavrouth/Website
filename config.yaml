@@ -1,8 +1,8 @@
 baseURL: /
 theme: hugo-apero
 languageCode: en
-title: Hugo Apéro
-author: Alison Hill
+title: Pallav Routh
+author: Pallav Routh
 copyright: ''
 googleAnalytics: ''
 disqusShortname: ''
@@ -24,58 +24,51 @@ markup:
       hardwraps: no
       unsafe: yes
   highlight:
-    style: github
+    style: monokailight
   tableOfContents:
     endLevel: 2
     ordered: no
     startLevel: 2
 params:
-  custom_theme: ''
-  customheadingFontFamily: Fraunces
-  customtextFontFamily: Commissioner
-  description: A modern, beautiful, and easily configurable blog theme for Hugo.
-  favicon: /img/favicon.ico
-  headingFontFamily: sans-serif
-  logo: /img/blogophonic-mark-dark.png
+  custom_theme: 
+  customheadingFontFamily: 
+  customtextFontFamily: 
+  description: Personal website of Pallav Routh
+  favicon: 
+  headingFontFamily: baskerville
+  logo: 
   mainSections:
     - blog
-    - project
-    - talk
+    - talks
   navallcaps: yes
-  orgLocal: Anywhere
-  orgName: RStudio
-  sharing_image: /img/papillons.jpg
+  orgLocal: 
+  orgName: Pallav Routh
+  sharing_image: 
   social:
     - icon: github
       icon_pack: fab
-      url: https://github.com/apreshill/apero
+      url: https://github.com/pallavrouth
     - icon: facebook-square
       icon_pack: fab
-      url: https://www.facebook.com/hashtag/ap%C3%A9ro
+      url: https://www.facebook.com/people/Pallav-Rt/100012403260781/
     - icon: instagram
       icon_pack: fab
-      url: https://www.instagram.com/explore/tags/apero/
+      url: https://www.instagram.com/pallav_r/?hl=en
     - icon: twitter
       icon_pack: fab
-      url: https://twitter.com/hashtag/apéro
-    - icon: impactstory
-      icon_pack: ai
-      url: https://impactstory.org/u/0000-0002-8082-1890
+      url: https://twitter.com/pallav03030140
     - icon: orcid
       icon_pack: ai
       url: http://orcid.org/0000-0002-8082-1890
-    - icon: rss
-      icon_pack: fas
-      url: /blog/index.xml
   socialInFooter: yes
   socialInHeader: no
-  textFontFamily: sans-serif
-  theme: sky
-  twitter: apreshill
+  textFontFamily: athelas
+  theme: grayscale
+  twitter: pallav03030140
   utterances:
-    issue_term: pathname
+    issue_term: title
     label: 'comments :crystal_ball:'
-    repo_name: apreshill/apero
+    repo_name: pallavrouth/Website
     theme: boxy-light
     use_utterances: yes
 taxonomies:
@@ -92,9 +85,9 @@ menu:
       title: Contact form
       url: /contact/
       weight: 2
-    - name: Contributors
-      title: Contributors
-      url: /contributors/
+    - name: RSS
+      title: RSS
+      url: /blog/index.xml
       weight: 3
   header:
     - name: About
@@ -105,22 +98,10 @@ menu:
       title: Blog
       url: /blog/
       weight: 2
-    - name: Projects
-      title: Project Portfolio
-      url: /project/
-      weight: 3
     - name: Talks
       title: Talks
-      url: /talk/
-      weight: 4
-    - name: A collection
-      title: A collection
-      url: /collection/
-      weight: 5
-    - name: Elements
-      title: Element Page
-      url: /elements/
-      weight: 6
+      url: /talks/
+      weight: 3
 privacy:
   disqus:
     disable: no
