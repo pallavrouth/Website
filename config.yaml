@@ -62,7 +62,7 @@ params:
       url: http://orcid.org/0000-0002-8082-1890
   socialInFooter: yes
   socialInHeader: no
-  textFontFamily: athelas
+  textFontFamily: georgia
   theme: grayscale
   twitter: pallav03030140
   utterances:
