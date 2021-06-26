@@ -23,7 +23,9 @@ In this blog post, I try to elaborate on his main takeaways from section 3.4 and
 
 ## Two normals does not make a normal
 
-Consider this linear regression model `\(y = \beta x + \epsilon_y\)`. Now imagine we know that `\(x\)` is endogenous. The ordinary least squares (OLS) estimate of `\(\beta\)` that we get from this regression model, would be biased. To fix the issue, we estimate `\(\beta\)` using the two stage least square (2SLS) model. The 2SLS method involves finding an instrument `\(z\)` that explains the endogenous portions of `\(x\)` in a separate regression `\(x = \gamma z + \epsilon_x\)`. We call this regression the *first stage* regression. We then use the predicted `\(\hat{x}\)` from this regression in the *second stage* regression `\(y = \beta \hat{x} + \epsilon_y\)`. The `\(\beta\)` from this two stage process - `\(\beta_{IV}\)` - would be less biased compared to the OLS estimate of `\(\beta\)`^[To be more precise, `\(\beta_{IV}\)` is asymptotically unbiased].
+Consider this linear regression model `\(y = \beta x + \epsilon_y\)`. Now imagine we know that `\(x\)` is endogenous. The ordinary least squares (OLS) estimate of `\(\beta\)` that we get from this regression model, would be biased. To fix the issue, we estimate `\(\beta\)` using the two stage least square (2SLS) model. The 2SLS method involves finding an instrument `\(z\)` that explains the endogenous portions of `\(x\)` in a separate regression `\(x = \gamma z + \epsilon_x\)`. We call this regression the *first stage* regression. We then use the predicted `\(\hat{x}\)` from this regression in the *second stage* regression `\(y = \beta \hat{x} + \epsilon_y\)`. The `\(\beta\)` from this two stage process - `\(\beta_{IV}\)` - would be less biased compared to the OLS estimate of `\(\beta\)`.[^1]
+
+[^1]: To be more precise, `\(\beta_{IV}\)` is asymptotically unbiased.
 
 Matrix notation allows us to express `\(\beta_{IV}\)` more compactly in terms of `\(z\)`, `\(x\)` and `\(y\)`. You can algebraically show that 
 
@@ -32,7 +34,9 @@ Now, if `\(z\)`, `\(x\)`, and `\(y\)` are all normally distributed, the numerato
 
 `$$\beta_{IV} = \frac{z^Ty}{z^Tx} = \frac{X_1 \sim N(\mu_1,\sigma_1)}{X_2 \sim N(\mu_2,\sigma_2)}$$`
 
-The question that Rossi asks in section 3.4 of his paper is this - does the distribution of the ratio of two normal random variables also look normal? He asks this question because understanding the distribution of the ratio of two normals would help understand the sampling distribution^[Understanding sampling distributions of estimates produced by certain estimators is standard practice in econometrics. In this example, `\(\beta_{IV}\)` is an estimate produced by the estimator `\(\frac{z^Ty}{z^Tx}\)`. Examining sampling distributions of estimates ultimately helps us understand if one can appropriately make inferences about a larger population based on the available smaller sample] of `\(\beta_{IV}\)`. 
+The question that Rossi asks in section 3.4 of his paper is this - does the distribution of the ratio of two normal random variables also look normal? He asks this question because understanding the distribution of the ratio of two normals would help understand the sampling distribution[^2] of `\(\beta_{IV}\)`. 
+
+[^2]: Understanding sampling distributions of estimates produced by certain estimators is standard practice in econometrics. In this example, `\(\beta_{IV}\)` is an estimate produced by the estimator `\(\frac{z^Ty}{z^Tx}\)`. Examining sampling distributions of estimates ultimately helps us understand if one can appropriately make inferences about a larger population based on the available smaller sample.
 
 So, below I generate two normal random variables - `\(X_1\)` coming from `\(N(1,0.5)\)` and `\(X_2\)` from `\(N(1,0.2)\)`. Then I take their ratio and plot it.
 
@@ -81,13 +85,17 @@ ggplot(ratio_normal,aes(x = dist)) +
 
 As the picture clearly shows, the ratio of two normals is no longer normal when the denominator has larger standard deviation with a mean closer to 0. It has two distinctive peaks and is bimodal. 
 
-Why is this realization important? Recall, what the denominator of `\(\beta_{IV}\)` represents. The denominator - `\(z^Tx\)` - represents the covariance of `\(x\)` with instrument `\(z\)`. So, when the covariance between `\(x\)` with `\(z\)` is small, it would be similar to a distribution with large standard deviation and small mean. And we can see in the example above, that when that happens, the ratio of two normals is likely bimodal^[But, why does normality matter for sampling distributions of estimates produced by an estimator? Normality matters when you attempt to get some sense of the uncertainty of the distrution of estimates by calculating their standard errors. Getting expressions of standard errors is easier if you assume the distribution of the estimates is normal. The standard errors in turn help us answer crucial hypotheses (such as is `\(\beta = 0\)` or not)]. When the covariance between `\(x\)` with `\(z\)` is small, such an IV is refered to as a *"weak IV"*.    
+Why is this realization important? Recall, what the denominator of `\(\beta_{IV}\)` represents. The denominator - `\(z^Tx\)` - represents the covariance of `\(x\)` with instrument `\(z\)`. So, when the covariance between `\(x\)` with `\(z\)` is small, it would be similar to a distribution with large standard deviation and small mean. And we can see in the example above, that when that happens, the ratio of two normals is likely bimodal[^3]. When the covariance between `\(x\)` with `\(z\)` is small, such an IV is refered to as a *"weak IV"*.    
+
+[^3]: But, why does normality matter for sampling distributions of estimates produced by an estimator? Normality matters when you attempt to get some sense of the uncertainty of the distrution of estimates by calculating their standard errors. Getting expressions of standard errors is easier if you assume the distribution of the estimates is normal. The standard errors in turn help us answer crucial hypotheses (such as is `\(\beta = 0\)` or not).
 
 ## Weak IV and asymptotic approximation
 
 The simple simulation above shows that weak IVs are problematic. But, the simulation approach isn't reliable for estimating the uncertainty of `\(\beta_{IV}\)` for any IVs. For that one needs to finds an exact analytical expression of the sampling distribution of `\(\beta_{IV}\)`. However, since the expression `\(\frac{z^Ty}{z^Tx}\)` is non-linear, it's not possible to find an analytical expression. Then we rely on theoretical asymptotic methods to approximate the sampling distribution for larger samples. The standard errors of this theoretical asymptotic distribution would give us some sense of the uncertainty around the parameter. But, then the question is - does the finite sample distribution mirror the theoretical large sample approximation?
 
-Using simulations, Rossi shows that the finite sampling distribution of `\(\beta_{IV}\)` can be different from its asymptotic approximation given by `\((\frac{z^Tx}{N})^{-1} \sqrt N \frac{z^T \epsilon_y}{N}\)`. He compared the distribution of random variables coming from `\(z^Ty/z^Tx\)` versus distribution of normal random variables coming from `\(\sqrt N \times z^T\epsilon_y\)`^[This is because Rossi mentions that "as N approaches infinity, the denominator...converges to a constant..The asymptotic distribution is entirely driven by the numerator...expressed as `\(\sqrt N\)` times a weighted sum of error terms"]. 
+Using simulations, Rossi shows that the finite sampling distribution of `\(\beta_{IV}\)` can be different from its asymptotic approximation given by `\((\frac{z^Tx}{N})^{-1} \sqrt N \frac{z^T \epsilon_y}{N}\)`. He compared the distribution of random variables coming from `\(z^Ty/z^Tx\)` versus distribution of normal random variables coming from `\(\sqrt N \times z^T\epsilon_y\)`[^4]. 
+
+[^4]: This is because Rossi mentions that "as N approaches infinity, the denominator...converges to a constant..The asymptotic distribution is entirely driven by the numerator...expressed as `\(\sqrt N\)` times a weighted sum of error terms".
 
 I demonstrate this by first choosing `\(X_2 \sim N(0.1,1)\)` as the denominator.
 
@@ -239,7 +247,8 @@ The RMSE from IV model is much higher than OLS. Even though the IV estimates are
 ```r
 ggplot(data.frame(F_val = unlist(all_simulations[4,])),aes(x = F_val)) +
   geom_histogram(binwidth = 1, color = "black") +
-  geom_vline(xintercept = 10, col = "blue", lty = 2)
+  geom_vline(xintercept = 10, col = "blue", lty = 2) +
+  labs(x = "F value")
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
@@ -307,7 +316,9 @@ The results re-inforces the previous conclusion - multiple moderately weak IVs c
 
 The results so far tell us that if the instruments are moderately strong, then (1) the estimates from small samples will be 'normal', (2) the large sample approximation of the estimate will be close to the small sample estimate and (3) the standard errors will be reliable.
 
-But, Rossi points out that being moderately strong isn't the only condition that makes IVs *valid*. For instruments to be valid, it should satisfy one more condition - the instrument must be uncorrelated with the error term^[In textbooks, this is referred to as *"meeting the exclusion restriction"*.] `\(\epsilon_y\)`. In other words, instrument `\(z\)` should only impact `\(y\)` through endogenous variable `\(x\)`. Rossi uses another simulation to examine the reliability of `\(\beta_{IV}\)` when the IV is strong but invalid. 
+But, Rossi points out that being moderately strong isn't the only condition that makes IVs *valid*. For instruments to be valid, it should satisfy one more condition - the instrument must be uncorrelated with the error term[^5] `\(\epsilon_y\)`. In other words, instrument `\(z\)` should only impact `\(y\)` through endogenous variable `\(x\)`. Rossi uses another simulation to examine the reliability of `\(\beta_{IV}\)` when the IV is strong but invalid. 
+
+[^5]: In textbooks, this is referred to as *"meeting the exclusion restriction"*.
 
 He simulates data from the following model -
 
@@ -403,4 +414,6 @@ dt_coefs %>%
 
 The RMSE on IV estimate is almost 7 times the RMSE on the OLS estimate! So, even when the IV is not weak, its invalidity has made its sampling behavior worse than OLS. 
 
-But, what can we do to inspect whether the IV is invalid or not? Unfortunately, there are no statistical test, that can help us inspect whether an IV is invalid^[There is one exception to this rule. In an overidentified IV problem, we can test if the extra instruments are valid or not.]. In the end, Rossi argues that because, we can never objectively test for IV validity, the idea that IV models should be preferred over OLS models *"is not persuasive"*.
+But, what can we do to inspect whether the IV is invalid or not? Unfortunately, there are no statistical test, that can help us inspect whether an IV is invalid[^6]. In the end, Rossi argues that because, we can never objectively test for IV validity, the idea that IV models should be preferred over OLS models *"is not persuasive"*.
+
+[^6]: There is one exception to this rule. In an overidentified IV problem, we can test if the extra instruments are valid or not.

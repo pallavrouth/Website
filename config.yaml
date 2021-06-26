@@ -23,6 +23,8 @@ markup:
     renderer:
       hardwraps: no
       unsafe: yes
+    extensions:
+      footnote: yes
   highlight:
     style: monokailight
   tableOfContents:
