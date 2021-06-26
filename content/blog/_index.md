@@ -9,18 +9,18 @@ cascade:
     show_sidebar_adunit: false
     text_link_label: View recent posts
     text_link_url: /blog/
-description: "A blog where I share my knowledge on statistical topics that intrigue me. It     contains  tutorials that use R to explain certain concepts statistics that I find challenging."
+description: "Not your usual R and Stats blog"
 layout: list-sidebar
 show_author_byline: true
 show_post_date: true
 show_post_thumbnail: true
 sidebar:
   author: Pallav Routh
-  description: "A blog where I share my knowledge on statistical topics that intrigue me. It     contains  tutorials that use R to explain certain concepts statistics that I find challenging."
+  description: "This blog is my personal platform where I share my knowledge on statistical topics that intrigue me. It mainly contains tutorials that uses R to explain certain concepts in statistics that challenged me in the past. Sometimes I also post about my experiences as a Ph.D. student."
   show_sidebar_adunit: true
   text_link_label: Subscribe via RSS
   text_link_url: /index.xml
-  title: So Much To Learn So Little Time
+  title: So Much To Learn; So Little Time
 thumbnail_left: true
 title: Blog
 ---
