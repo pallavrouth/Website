@@ -7,14 +7,16 @@ date: '2021-06-26'
 slug: 
   - iv-samp
 categories:
-  - Consistency
-  - Sampling 
+  - Inference
+  - Sampling
+  - Regression
+  - Residuals 
 tags:
   - Econometrics
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, cache = TRUE)
 library(dplyr)
 library(ggplot2)
 library(tidyr)

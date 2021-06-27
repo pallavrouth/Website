@@ -7,8 +7,10 @@ date: '2021-06-26'
 slug: 
   - iv-samp
 categories:
-  - Consistency
-  - Sampling 
+  - Inference
+  - Sampling
+  - Regression
+  - Residuals 
 tags:
   - Econometrics
 ---
