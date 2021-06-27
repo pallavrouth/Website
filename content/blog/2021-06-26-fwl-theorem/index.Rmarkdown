@@ -1,7 +1,7 @@
 ---
-title: 'FWL theorem'
-subtitle: "The Frisch-Waugh-Lovell theorem"
-excerpt: "The intriguing FWL theorem and its connection with a fixed effects estimator."
+title: 'The Frisch-Waugh-Lovell theorem'
+subtitle: "The intriguing FWL theorem and its connection with a fixed effects estimator"
+excerpt: "The result of Frisch-Waugh-Lovell (FWL) theorem and how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings."
 author: Pallav Routh
 date: '2021-06-26'
 slug: 
