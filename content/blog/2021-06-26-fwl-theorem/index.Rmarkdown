@@ -1,14 +1,15 @@
 ---
 title: 'The Frisch-Waugh-Lovell theorem'
 subtitle: "The intriguing FWL theorem and its connection with a fixed effects estimator"
-excerpt: "The result of Frisch-Waugh-Lovell (FWL) theorem and how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings."
+excerpt: "This blog post demonstrates the result of Frisch-Waugh-Lovell (FWL) theorem how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings."
 author: Pallav Routh
 date: '2021-06-26'
 slug: 
   - fwl-theorem
 categories:
-  - FLW
-  - Fixed effects
+  - Regression
+  - Residuals
+  - Panel model
 tags:
   - Econometrics
 ---
@@ -19,7 +20,7 @@ library(plm)
 library(dplyr)
 ```
 
-In this blog post, I demonstrate the result of Frisch-Waugh-Lovell (FWL) theorem and how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings. Instead of using math definitions and derivations, I rely on simulations and practical examples to help reader get more clarity.  
+In this blog post, I demonstrate the main result of the Frisch-Waugh-Lovell (FWL) theorem how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings. But, instead of using math definitions and derivations, I rely on simulations and practical examples. 
 
 # What is FWL theorem?
 
@@ -27,7 +28,7 @@ The FWL theorem provides a very intriguing result that centers around the residu
 
 $$y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3x_3 + \beta_4x_4 + \beta_5x_5 + \epsilon_i$$
 
-But, you are only really interested in the effect of $x_1$ on $y$ (that is, $\beta_1$). And you are not concerned about the effects of the remaining IVs. 
+But, you are only really interested in the effect of $x_1$ on $y$ (that is, $\beta_1$). And, you are not concerned about the effects of the remaining IVs. 
 
 Conventionally you would use a full regression model[^1] that regresses $y$ on all the IVs. This regression will give you the coefficient on $x_1$ - $\beta_1$ - along with the coefficients of the other IVs. 
 
@@ -68,7 +69,7 @@ coefficients(lm(y ~ x1 + x2 + x3 + x4 + x5,
                 data = simulated_data))['x1']
 ```
 
-We can see from the result that regression has done a decent job at estimating the true relationship between $x_1$ and $y$. Next, lets try to use FWL theorem which proceeds in two steps. In the first step, I'll get residuals - $res1$ from regressing $y$ on all IVs except $x_1$.
+We can see from the result above that regression has done a decent job at estimating the true relationship between $x_1$ and $y$. Next, lets try to use FWL theorem which proceeds in two steps. In the first step, I'll get residuals - $res1$ from regressing $y$ on all IVs except $x_1$.
 
 ```{r}
 res1 <- residuals(lm(y ~ x2 + x3 + x4 + x5 , 
