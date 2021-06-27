@@ -16,7 +16,7 @@ show_post_date: true
 show_post_thumbnail: true
 sidebar:
   author: Pallav Routh
-  description: "This is my personal blog where I share my knowledge on statistical topics that intrigue me. It mainly contains tutorials that uses R to explain certain concepts in statistics that challenged me in the past. Sometimes I also post about my experiences as a Ph.D. student."
+  description: "This is my personal blog where I share my knowledge on concepts in statistics and econometrics that intrigue me. It consists of tutorials that uses R to explain these concepts in a clear intuitive manner. Other than tutorials, I also like to write about my experiences as a Ph.D. student."
   show_sidebar_adunit: true
   text_link_label: 
   text_link_url: /index.xml
