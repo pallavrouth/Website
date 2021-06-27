@@ -87,10 +87,6 @@ menu:
       title: Contact form
       url: /contact/
       weight: 2
-    - name: RSS
-      title: RSS
-      url: /blog/index.xml
-      weight: 3
   header:
     - name: About
       title: About Blogophonic
