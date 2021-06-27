@@ -18,7 +18,7 @@ sidebar:
   author: Pallav Routh
   description: "This blog is my personal platform where I share my knowledge on statistical topics that intrigue me. It mainly contains tutorials that uses R to explain certain concepts in statistics that challenged me in the past. Sometimes I also post about my experiences as a Ph.D. student."
   show_sidebar_adunit: true
-  text_link_label: Subscribe via RSS
+  text_link_label: 
   text_link_url: /index.xml
   title: So Much To Learn; So Little Time
 thumbnail_left: true
