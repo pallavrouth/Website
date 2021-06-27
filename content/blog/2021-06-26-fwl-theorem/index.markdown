@@ -1,7 +1,7 @@
 ---
-title: 'FWL theorem'
-subtitle: "The Frisch-Waugh-Lovell theorem"
-excerpt: "The intriguing FWL theorem and its connection with a fixed effects estimator."
+title: 'The Frisch-Waugh-Lovell theorem'
+subtitle: "The intriguing FWL theorem and its connection with a fixed effects estimator"
+excerpt: "The result of Frisch-Waugh-Lovell (FWL) theorem and how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings."
 author: Pallav Routh
 date: '2021-06-26'
 slug: 
@@ -14,8 +14,6 @@ tags:
 ---
 
 
-
-**What you need to know:** (1) Basic intuitive idea of how multiple regression works. (2) Basic idea of what residuals in regression are. (3) Basic idea of what fixed effects model are and when they are used. 
 
 In this blog post, I demonstrate the result of Frisch-Waugh-Lovell (FWL) theorem and how it can be used to understand the equivalence of different fixed effects estimators used in panel data settings. Instead of using math definitions and derivations, I rely on simulations and practical examples to help reader get more clarity.  
 
