@@ -8,7 +8,7 @@ images:
 - img/bees.jpg
 show_action_link: true
 show_social_links: true
-subtitle: Research Assistant and Professor @ UT San Antonio
+subtitle: Doctoral Candidate in marketing @ UT San Antonio
 text_align_left: true
 title: Pallav Routh
 type: home
