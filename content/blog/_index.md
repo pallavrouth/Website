@@ -16,7 +16,7 @@ show_post_date: true
 show_post_thumbnail: true
 sidebar:
   author: Pallav Routh
-  description: "This is my personal blog where I share my knowledge on concepts in statistics and econometrics that intrigue me. I try to organize my thoughts in the form of a tutorial that uses R to explain these concepts in a clear intuitive manner.I usually try to organize my blog posts with certain 'series' with a common theme. But, once in a while I also publish standalone posts. You can either search for a topic within these series or using tags or categories. I welcome helpful comments to all my blog posts. You can also reach out to me via the contact form below."
+  description: "This is my personal blog where I share my knowledge on concepts in statistics and econometrics that intrigue me. I usually organize my blog posts within a 'series' that share a common theme. But, once in a while I also publish standalone posts. You can either search for a topic within a series or using the tags that appear below a post. I welcome helpful comments to all my blog posts. You can also reach out to me via the contact form below."
   show_sidebar_adunit: true
   text_link_label: 
   text_link_url: /index.xml
