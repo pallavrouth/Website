@@ -3,8 +3,6 @@ author: Pallav Routh
 cascade:
   author: Pallav Routh
   categories:
-  - Sampling distribution
-  - Endogeneity
   layout: single-series
   series: Miscellaneous
   show_author_byline: true
@@ -16,7 +14,6 @@ cascade:
     text_link_url: ""
     text_series_label: In this series
   tags:
-  - Econometrics
 description: |
   A series on miscellaneous topics in econometrics
 layout: list-sidebar
