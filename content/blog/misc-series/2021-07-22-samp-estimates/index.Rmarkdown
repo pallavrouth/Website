@@ -1,7 +1,7 @@
 ---
-title: 'Sampling Estimations'
-subtitle: "Understanding bias, efficiency and consistency"
-excerpt: "Explain the principles behind bias, efficiency and consistency intuitively using story-telling and simulations rather than relying on math."
+title: 'Sampling properties of estimators'
+subtitle: "Understanding bias, efficiency and consistency for statistical estimators"
+excerpt: "Explain the principles behind bias, efficiency and consistency of estimators intuitively using story-telling and simulations rather than relying on math."
 author: Pallav Routh
 date: '2021-07-22'
 slug: 
@@ -44,7 +44,7 @@ The distribution of heights for the entire population is bell-shaped with 5.2 in
 
 Now, imagine that there was a researcher who wanted to figure out *the most occurring* height of adult female. And the researcher does not have access to any information about the population - neither can he see the picture above nor does he know the mean and standard deviation. 
 
-In statistical language, the most occurring height is the researcher's *parameter* of interest^[Let's represent the sample parameter estimate by $\theta$]. The true value of this parameter is equal to 5.2^[Let's represent the true population parameter estimate by $\theta^0$]. The true value is unknown to the researcher because he can never have access to the heights of entire female population. Instead, he only has a tiny *sample* of 50 adults from this population. 
+In statistical language, the most occurring height is the researcher's *parameter* of interest. Let's represent the sample parameter estimate by $\theta$. The true value of this parameter is equal to 5.2. Let's represent the true population parameter estimate by $\theta^0$. The true value is unknown to the researcher because he can never have access to the heights of entire female population. Instead, he only has a tiny *sample* of 50 adults from this population. 
 
 ```{r, fig.margin = TRUE}
 research_sample <- sample(population,50)
@@ -90,11 +90,15 @@ Looks like the estimate from estimator1 is much closer to the truth compared to 
 
 Now that we have estimates from two different estimators, the real question is which estimator should the researcher pick? Is one better or superior than the other? To answer this question one needs to understand the characteristics of estimators and then use them to differentiate between a superior and inferior estimator.
 
-In general, the characteristics of estimators is a description of how estimators are expected to behave given a random sample. These characteristics can be categorized based on the sample size. For smaller or finite samples, superior estimators will have no *bias* and will be more *efficient*. For larger or infinite sample sizes, superior estimators will be *consistent*^[In statistical jargon, consistency is an asymptotic property of an estimator.].
+In general, the characteristics of estimators is a description of how estimators are expected to behave given a random sample. These characteristics can be categorized based on the sample size. For smaller or finite samples, superior estimators will have no *bias* and will be more *efficient*. For larger or infinite sample sizes, superior estimators will be *consistent*[^1].
+
+[^1]: In statistical jargon, consistency is an asymptotic property of an estimator.
 
 # Bias
 
-To say that an estimator is unbiased means that *on average* the estimator would produce estimates that is close to the truth^[Using our notation, bias can expressed as $E(\theta - \theta^0) = 0$].
+To say that an estimator is unbiased means that *on average* the estimator would produce estimates that is close to the truth[^2].
+
+[^2]: Using our notation, bias can expressed as $E(\theta - \theta^0) = 0$.
 
 What does this mean in the context of our current problem? It means that if you could repeatedly draw samples from the population of adult females and allow an unbiased estimator to estimate the parameter of interest on each of the samples, then the average of the estimates would be similar to the true estimate of height 5.2. 
 
@@ -129,9 +133,13 @@ But, being unbiased is not always sufficient in deciding the superiority of an e
 
 # Efficiency
 
-Realize that statistical inference isn't always about getting an estimate. It is also about expressing uncertainty about that estimate^[Uncertainty about estimates are expressed using standard errors and constructing confidence intervals around the point estimates.]. This is the motivation behind the concept efficiency - you may have two estimators that give you the right estimates on average, but can one estimator be less uncertain than the other? 
+Realize that statistical inference isn't always about getting an estimate. It is also about expressing uncertainty about that estimate[^3]. This is the motivation behind the concept efficiency - you may have two estimators that give you the right estimates on average, but can one estimator be less uncertain than the other? 
 
-What does this mean in the context of our problem? It means that if you could repeatedly draw samples from the population of adult females and allow the efficient estimator to estimate the parameter of interest on each of the samples, then the standard deviation of the estimates would be small and tightly packed around the value of 5.2^[Realize that in order to be centered around 5.2, the estimator also has to be unbiased. If it's only an efficient estimator, it need not be centered around 5.2.].
+[^3]: Uncertainty about estimates are expressed using standard errors and constructing confidence intervals around the point estimates.
+
+What does this mean in the context of our problem? It means that if you could repeatedly draw samples from the population of adult females and allow the efficient estimator to estimate the parameter of interest on each of the samples, then the standard deviation of the estimates would be small and tightly packed around the value of 5.2[^4].
+
+[^4]: Realize that in order to be centered around 5.2, the estimator also has to be unbiased. If it's only an efficient estimator, it need not be centered around 5.2.  
 
 To visually grasp the idea of efficiency we need a third estimator estimator3 which is as good as estimator1. Based on personal experience, the researcher somehow feels that the first rumor is true. If that is the case, then the most occurring height can also be approximated by the mean of a normal distribution. Accordingly, he models the sample heights as independent identically observations coming from a normal distribution. Then he finds the maximum likelihood estimate of the mean given the sample data.   
 
@@ -177,13 +185,17 @@ data.frame(estimates = c(e1_estimates,e3_estimates),
    theme(legend.position = "top")
 ```
 
-The subtle difference is now visible. The estimates produced by estimator3 is more concentrated around the true value of 5.2 compared to estimator1. In other words, the variance of the distribution of estimates from estimator3 is lower compared to estimator1^[Using our notation, we can say $var(\theta_3) < var(\theta_2)$]. We say estimator3 is more efficient than estimator1 because the former is less uncertain than the latter. It provides the researcher greater confidence in the sense that estimator3 is more likely to uncover the true value given a random sample.
+The subtle difference is now visible. The estimates produced by estimator3 is more concentrated around the true value of 5.2 compared to estimator1. In other words, the variance of the distribution of estimates from estimator3 is lower compared to estimator1[^5]. We say estimator3 is more efficient than estimator1 because the former is less uncertain than the latter. It provides the researcher greater confidence in the sense that estimator3 is more likely to uncover the true value given a random sample.
+
+[^5]: Using our notation, we can say $var(\theta_3) < var(\theta_2)$.
 
 To explain the concepts of biasedness and efficiency notice that I relied on repeated sampling from the actual population. This is not possible in practise. So, bias and effeciency of estimators are theoretical results are inspired by thought experiments where one imagines repeated sampling and uses known facts and theorems in statistical inference to arrive at a conclusion.
 
 # Consistency
 
-The final important characteristic of an estimator is its consistency. An estimator is consistent if its estimate converges to the true value as the sample size gets infinitely large^[Using our notation, we can say that $\theta$ and $\theta^0$ are very close to each other when $(\theta - \theta^0) > c$ where $c$ is a very small number. In terms of probability we can say that $\theta$ and $\theta^0$ are very close if $\text{Pr}[(\theta - \theta^0) > c] = 0$ - there is negligible probability that $\theta$ and $\theta^0$ would be separated by a small constant $c$. An estimator is consistent if this probabilistic statement is true as the sample size increases to infinity.]. So unlike bias or efficiency, consistency involves changing sample size. 
+The final important characteristic of an estimator is its consistency. An estimator is consistent if its estimate converges to the true value as the sample size gets infinitely large[^6]. So unlike bias or efficiency, consistency involves changing sample size. 
+
+[^6]: Using our notation, we can say that $\theta$ and $\theta^0$ are very close to each other when $(\theta - \theta^0) > c$ where $c$ is a very small number. In terms of probability we can say that $\theta$ and $\theta^0$ are very close if $\text{Pr}[(\theta - \theta^0) > c] = 0$ - there is negligible probability that $\theta$ and $\theta^0$ would be separated by a small constant $c$. An estimator is consistent if this probabilistic statement is true as the sample size increases to infinity.
 
 What does this mean in the context of our current problem? It means that if the researcher could repeated draw samples of increasing size from the population of adult females, the estimate from a consistent estimator would get closer and closer to 5.2. 
 
@@ -204,7 +216,9 @@ ggplot(data.frame(n = samp_size,
   geom_hline(yintercept = 5.2, col = "blue")
 ```
 
-Indeeed, as the sample size gets bigger the estimate gets closer to the true value of 5.2. Notice how consistency encompases bias and efficiency^[Put succinctly, if an estimator in unbiased *and* its variance reduces to 0 as sample size tends to infinity, we have a consistent estimator.]. As the sample size is increased, the estimated parameter gets closer to the actual value - estimator1 is unbiased for large sample sizes. As the sample size is increased the parameter values are less "wobly". They seem to settle down and become concentrated around a point - estimator1 is efficient for large sample sizes.
+Indeeed, as the sample size gets bigger the estimate gets closer to the true value of 5.2. Notice how consistency encompases bias and efficiency[^7]. As the sample size is increased, the estimated parameter gets closer to the actual value - estimator1 is unbiased for large sample sizes. As the sample size is increased the parameter values are less "wobly". They seem to settle down and become concentrated around a point - estimator1 is efficient for large sample sizes.
+
+[^7]: Put succinctly, if an estimator in unbiased *and* its variance reduces to 0 as sample size tends to infinity, we have a consistent estimator.
 
 I interpret the results in the graph in probabilistic terms to describe consistency more concretely. To do that first I measure the difference between the estimates produced by e1_estimator and the true value of 5.2. 
 
