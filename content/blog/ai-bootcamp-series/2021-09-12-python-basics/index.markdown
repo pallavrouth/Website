@@ -14,11 +14,13 @@ tags:
 
 
 
-In this blog post I talk about some basic operations you can do with Python. 
+In this blog post I talk about two basic operations you can do with Python : (1) use python as a calculator and (2) variable assignment in python.
 
-Before learning about these basic operations, it is handy to know about the different types of objects in python. Here is a friendly short video on the most frequently used python types : https://campus.datacamp.com/courses/intro-to-python-for-data-science/chapter-1-python-basics?ex=6
+Before learning about these basic operations, it might be helpful to refresh your memory on the different types of objects in python. Here is a friendly short video on the most frequently used python types : 
 
-# Using python as a calculator
+https://campus.datacamp.com/courses/intro-to-python-for-data-science/chapter-1-python-basics?ex=6
+
+## Using python as a calculator
 
 Understanding how to use python as a calculator can be a useful starting point. Simple arithmetic operations are straightforward. We can use the `print()` function to see the output of these arithmetic operations. Below are some examples of using the addition, subtraction, multiplication, division, exponentiation and remainder operator on 2 arbitrary numbers. 
 
@@ -75,7 +77,7 @@ print(18 % 7)
 ## 4
 ```
 
-# Variable assignment and computations
+## Variable assignment and computations
 
 A common operation in python, is to assign some value to an object so it can be referenced later in some other operation. The syntax is simple : object name `=` object value. Lets do the following excercise to understand how this works. 
 
