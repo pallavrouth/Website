@@ -1,5 +1,5 @@
 ---
-title: 'Intro to python'
+title: 'Introduction to python programming'
 subtitle: "Python data types and basic operations in python"
 excerpt: "Using python as a calculator and variable assignments and computation"
 author: Pallav Routh
@@ -14,19 +14,17 @@ tags:
 
 
 
-In this blog post I talk about two basic operations you can do with Python : (1) use python as a calculator and (2) variable assignment in python.
 
-Before learning about these basic operations, it might be helpful to refresh your memory on the different types of objects in python. Here is a friendly short video on the most frequently used python types : 
-
-https://campus.datacamp.com/courses/intro-to-python-for-data-science/chapter-1-python-basics?ex=6
+In this blog post I talk about two basic operations you can do with Python : (1) use python as a calculator and (2) variable assignment in python. Before learning about these basic operations, it is handy to know about the different types of objects in python. Here is a friendly short video on the most frequently used python types : [Link to video](https://campus.datacamp.com/courses/intro-to-python-for-data-science/chapter-1-python-basics?ex=6)
 
 ## Using python as a calculator
 
-Understanding how to use python as a calculator can be a useful starting point. Simple arithmetic operations are straightforward. We can use the `print()` function to see the output of these arithmetic operations. Below are some examples of using the addition, subtraction, multiplication, division, exponentiation and remainder operator on 2 arbitrary numbers. 
+Understanding how to use python as a calculator can be a useful starting point. Simple arithmetic operations are straightforward. We can use the `print()` function to see the output of these arithmetic operations. Below are some examples of using the addition, subtraction, multiplication, division, exponentiation and remainder operator on 2 arbitrary numbers.
+
+1. Addition -
 
 
 ```python
-# Addition and subtraction
 print(5 + 5)
 ```
 
@@ -34,14 +32,19 @@ print(5 + 5)
 ## 10
 ```
 
+2. Subtraction
+
+
 ```python
 print(5 - 5)
-# Multiplication and division
 ```
 
 ```
 ## 0
 ```
+
+3. Multiplication
+
 
 ```python
 print(3 * 5)
@@ -51,23 +54,31 @@ print(3 * 5)
 ## 15
 ```
 
+4. Division
+
+
 ```python
 print(10 / 2)
-# Exponentiation
 ```
 
 ```
 ## 5.0
 ```
 
+5. Exponentiation
+
+
 ```python
 print(4 ** 2)
-# Remainder (modulo)
 ```
 
 ```
 ## 16
 ```
+
+
+6. Remainder
+
 
 ```python
 print(18 % 7)
