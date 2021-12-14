@@ -3,7 +3,7 @@ title: 'Matlab style plots using ggplot2'
 subtitle: "Create Matlab style plots using ggplot2"
 excerpt: "Codes to create scientific plots in ggplot2 that look like Matlab plots"
 author: Pallav Routh
-date: '2021-07-22'
+date: '2021-12-14'
 slug: 
   - ggplot2-matlab
 categories:
