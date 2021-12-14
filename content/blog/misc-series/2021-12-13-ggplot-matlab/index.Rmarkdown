@@ -40,6 +40,11 @@ g <-
 (g)
 ```
 
+```{r, echo = FALSE}
+theme_update(axis.text.x = element_text(margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm")),
+             axis.text.y = element_text(margin = unit(c(0.5, 0.5, 0.5, 0.5), "cm")))
+```
+
 # Inward ticks
 
 I will use `axis.ticks.length` argument within the `theme()` function to generate inward facing ticks :
@@ -188,10 +193,10 @@ theme_scientific <-
   theme(axis.line = element_line(color = "black"),
         axis.text.x = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.2, 0.1, 0.1, 0.5), "cm")),
+                                   margin = unit(c(0.7, 0.5, 0.5, 0.5), "cm")),
         axis.text.y = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.1, 0.1, 0.2, 0.1), "cm")),
+                                   margin = unit(c(0.5, 0.5, 0.7, 0.5), "cm")),
         axis.title = element_text(colour = "black", size = 12),
         axis.ticks.length = unit(-0.30, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.2),
@@ -224,10 +229,10 @@ theme_scientific <-
   theme(axis.line = element_line(color = "black"),
         axis.text.x = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.2, 0.1, 0.1, 0.5), "cm")),
+                                   margin = unit(c(0.7, 0.5, 0.5, 0.5), "cm")),
         axis.text.y = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.1, 0.1, 0.2, 0.1), "cm")),
+                                   margin = unit(c(0.5, 0.5, 0.7, 0.5), "cm")),
         axis.title = element_text(colour = "black", size = 12),
         axis.ticks.length = unit(-0.30, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.2),

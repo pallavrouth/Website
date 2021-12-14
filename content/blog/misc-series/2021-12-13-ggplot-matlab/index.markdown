@@ -3,7 +3,7 @@ title: 'Matlab style plots using ggplot2'
 subtitle: "Create Matlab style plots using ggplot2"
 excerpt: "Codes to create scientific plots in ggplot2 that look like Matlab plots"
 author: Pallav Routh
-date: '2021-07-22'
+date: '2021-12-14'
 slug: 
   - ggplot2-matlab
 categories:
@@ -38,6 +38,8 @@ g <-
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 
+
+
 # Inward ticks
 
 I will use `axis.ticks.length` argument within the `theme()` function to generate inward facing ticks :
@@ -54,7 +56,7 @@ Adding this to `g` creates :
 (g + theme_scientific)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 Nice! Let's clean up the axis a little and recreate the plot :
 
@@ -69,7 +71,7 @@ theme_scientific <-
 (g + theme_scientific)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 # Duplicate axis
 
@@ -83,7 +85,7 @@ Already looking 10x better! Next, let's add axes to all 4 sides. We can do this 
    theme_scientific)
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 # Evenly distributed scales
 
@@ -108,7 +110,7 @@ auto_breaks(random_series)
 ```
 
 ```
-## [1]  86.44118  92.63544  98.82970 105.02396 111.21821
+## [1]  86.76521  93.50216 100.23912 106.97607 113.71302
 ```
 
 Let's now use `auto_breaks()` within `ggplot::scale_x_continuous()` to clean up the axes scales - 
@@ -126,7 +128,7 @@ dataset %>%
   }
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 Notice how I used `%>%` with `{}` to get to the result. Using `{}` allows me to reference the column `read` from the dataset and use it as an input to the `auto_breaks()` function. I have also rounded up the values to the next integer. Let's repeat this for `y` axis. 
 
 
@@ -143,7 +145,7 @@ dataset %>%
   }
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 # Fix origins
 
@@ -200,7 +202,7 @@ dataset %>%
   }
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 Notice, how the scales on either axis are now adjusted to (lower limit - adjustment) and (upper limit + adjustment). Also, notice that I have used the `expand` argument to make sure no padding is added to the end points of the scales. 
 
@@ -214,10 +216,10 @@ theme_scientific <-
   theme(axis.line = element_line(color = "black"),
         axis.text.x = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.2, 0.1, 0.1, 0.5), "cm")),
+                                   margin = unit(c(0.7, 0.5, 0.5, 0.5), "cm")),
         axis.text.y = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.1, 0.1, 0.2, 0.1), "cm")),
+                                   margin = unit(c(0.5, 0.5, 0.7, 0.5), "cm")),
         axis.title = element_text(colour = "black", size = 12),
         axis.ticks.length = unit(-0.30, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.2),
@@ -243,7 +245,7 @@ dataset %>%
   }
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 Note : Using a adjustment factor of `Inf` leads to unadjusted scales. While using an adjustment factor of 1 leads to adjustment equal to `skip` to either end of each axes. Here is the same plot with adjustment factor set to 1.
 
@@ -253,10 +255,10 @@ theme_scientific <-
   theme(axis.line = element_line(color = "black"),
         axis.text.x = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.2, 0.1, 0.1, 0.5), "cm")),
+                                   margin = unit(c(0.7, 0.5, 0.5, 0.5), "cm")),
         axis.text.y = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.1, 0.1, 0.2, 0.1), "cm")),
+                                   margin = unit(c(0.5, 0.5, 0.7, 0.5), "cm")),
         axis.title = element_text(colour = "black", size = 12),
         axis.ticks.length = unit(-0.30, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.2),
@@ -282,4 +284,4 @@ dataset %>%
   }
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
