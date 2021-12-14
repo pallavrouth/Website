@@ -108,7 +108,7 @@ auto_breaks(random_series)
 ```
 
 ```
-## [1]  89.38764  94.80616 100.22468 105.64320 111.06172
+## [1]  86.44118  92.63544  98.82970 105.02396 111.21821
 ```
 
 Let's now use `auto_breaks()` within `ggplot::scale_x_continuous()` to clean up the axes scales - 
