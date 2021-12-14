@@ -42,14 +42,14 @@ g <-
 
 # Inward ticks
 
-I will use `axis.ticks.length` argument within the `theme()` function to generate inward facing ticks :
+I will use the `axis.ticks.length` argument within the `theme()` function to generate inward facing ticks. Let's save the settings to a new theme.
 
 
 ```r
 theme_scientific <- theme(axis.ticks.length = unit(-0.30, "cm"))
 ```
 
-Adding this to `g` creates :
+Adding `theme_scientific` to `g` adds inward ticks.
 
 
 ```r
@@ -58,7 +58,7 @@ Adding this to `g` creates :
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
-Nice! Let's clean up the axis a little and recreate the plot :
+Nice! Let's clean up the axis a little before moving forward. Let's change the color of text on either axis to be black and of size 12.
 
 
 ```r
@@ -101,7 +101,7 @@ auto_breaks <- function(series, num_breaks = 4) {
 }
 ```
 
-`auto_breaks` takes in as a argument a numeric vector. It then divides the range of the vector by the desired number of breaks to generate a `skip` interval. It outputs a sequence of evenly distributed values from the minimum to the maximum of the vector with increments equal to `skip`. In total, `num_breaks` + 1 values are created. For example : 
+`auto_breaks()` takes in as a argument a numeric vector and divides the range of the vector by the desired number of breaks to generate a `skip` interval. It outputs a sequence of evenly distributed values from the minimum to the maximum of the vector with increments equal to `skip` interval. In total, `num_breaks` + 1 values are created. For example : 
 
 
 ```r
@@ -110,7 +110,7 @@ auto_breaks(random_series)
 ```
 
 ```
-## [1]  86.76521  93.50216 100.23912 106.97607 113.71302
+## [1]  85.27289  91.79089  98.30889 104.82689 111.34490
 ```
 
 Let's now use `auto_breaks()` within `ggplot::scale_x_continuous()` to clean up the axes scales - 
@@ -129,6 +129,7 @@ dataset %>%
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+
 Notice how I used `%>%` with `{}` to get to the result. Using `{}` allows me to reference the column `read` from the dataset and use it as an input to the `auto_breaks()` function. I have also rounded up the values to the next integer. Let's repeat this for `y` axis. 
 
 
@@ -151,7 +152,7 @@ dataset %>%
 
 So much better! But, we're not done yet. We need to fix the limits of the scales on each axes. In particular, I would like to force the numbers to start from the origin. One way to address this issue to add 2 numbers to the output from `auto_breaks()`. These 2 numbers are placed above and below the minimum and maximum on either scale. 
 
-We can alter `auto_breaks()` slightly to make provisions for these 2 numbers. Basically, we to take the minimum (maximum) and subtract (add) a small ajustment to it. I chose the adjustment by scaling down the `skip` value. 
+We can alter `auto_breaks()` slightly to make provisions for these 2 numbers. Basically, we need to take the minimum (maximum) and subtract (add) a small ajustment to it. I chose the adjustment by scaling down the `skip` value by a certain factor.  
 
 
 ```r
@@ -169,7 +170,7 @@ auto_breaks <- function(series, num_breaks = 4, adjustment_factor = 2) {
 }
 ```
 
-In order to automatically pick the minimum and maximum values from `auto_breaks()` as limits, I also created the following helpful function `auto_lims()` :
+The default behavior would be to half the `skip` interval and then subtract (add) it to the minimum (maximum) of the input vector. Let's also write a function that automatically pick the minimum and maximum values from `auto_breaks()`. We will use this functions to set the limits on either scale.  
 
 
 ```r
@@ -216,10 +217,10 @@ theme_scientific <-
   theme(axis.line = element_line(color = "black"),
         axis.text.x = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.7, 0.5, 0.5, 0.5), "cm")),
+                                   margin = unit(c(0.55, 0.2, 0.2, 0.2), "cm")),
         axis.text.y = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.5, 0.5, 0.7, 0.5), "cm")),
+                                   margin = unit(c(0.2, 0.55, 0.2, 0.2), "cm")),
         axis.title = element_text(colour = "black", size = 12),
         axis.ticks.length = unit(-0.30, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.2),
@@ -255,10 +256,10 @@ theme_scientific <-
   theme(axis.line = element_line(color = "black"),
         axis.text.x = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.7, 0.5, 0.5, 0.5), "cm")),
+                                   margin = unit(c(0.55, 0.2, 0.2, 0.2), "cm")),
         axis.text.y = element_text(color = "black",
                                    size = 12,
-                                   margin = unit(c(0.5, 0.5, 0.7, 0.5), "cm")),
+                                   margin = unit(c(0.2, 0.55, 0.2, 0.2), "cm")),
         axis.title = element_text(colour = "black", size = 12),
         axis.ticks.length = unit(-0.30, "cm"),
         panel.border = element_rect(colour = "black", fill = NA, size = 0.2),
