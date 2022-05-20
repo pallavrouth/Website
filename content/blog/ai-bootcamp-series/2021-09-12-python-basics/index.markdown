@@ -1,11 +1,11 @@
 ---
-title: 'Introduction to python programming'
-subtitle: "Python data types and basic operations in python"
-excerpt: "Using python as a calculator and variable assignments and computation"
+title: 'Advanced Pandas'
+subtitle: "Dplyr style coding in Pandas"
+excerpt: "Using Pandas to chain operations"
 author: Pallav Routh
 date: '2021-09-12'
 slug: 
-  - python-basics
+  - python-advanced
 categories:
   - Python
 tags:
@@ -14,8 +14,7 @@ tags:
 
 
 
-
-In this blog post I talk about two basic operations you can do with Python : (1) use python as a calculator and (2) variable assignment in python. Before learning about these basic operations, it is handy to know about the different types of objects in python. Here is a friendly short video on the most frequently used python types : [Link to video](https://campus.datacamp.com/courses/intro-to-python-for-data-science/chapter-1-python-basics?ex=6)
+In this blog post, I demonstrate how to replicate `dplyr` style data manipulation in `pandas`. A characteristic feature of `dplyr` is its ability to chain together multiple operations using the infamous `%>%` operator. I will show `dplyr` and `pandas` code side by side which will further highlight similarities and differences between the two packages. Hopefully, this helps users migrate from `dplyr` to `pandas`.     
 
 ## Using python as a calculator
 
