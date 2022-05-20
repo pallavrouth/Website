@@ -27,7 +27,7 @@ import numpy as np
 ```
 
 ```{r}
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 ```
 
 
