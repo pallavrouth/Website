@@ -14,9 +14,66 @@ tags:
 
 
 
-In this blog post, I demonstrate how to replicate `dplyr` style data manipulation in `pandas`. A characteristic feature of `dplyr` is its ability to chain together multiple operations using the infamous `%>%` operator. I will show `dplyr` and `pandas` code side by side which will further highlight similarities and differences between the two packages. Hopefully, this helps users migrate from `dplyr` to `pandas`.     
+In this blog post, I demonstrate how to replicate `dplyr` style data manipulation in `pandas`. A characteristic feature of `dplyr` is its ability to chain together multiple operations using the infamous `%>%` operator. I will show `dplyr` and `pandas` code side by side which will further highlight similarities and differences between the two packages. Hopefully, this helps users migrate from `dplyr` to `pandas`.   
 
-## Using python as a calculator
+## Loading pandas and dplyr
+
+
+```python
+import pandas as pd
+import numpy as np
+```
+
+
+```r
+library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+
+## Data
+
+We are going to use the popular `cigarettes` dataset. Here is quick overview -
+
+
+```python
+data = pd.read_csv('https://raw.githubusercontent.com/pallavrouth/AI-Bootcamp/main/Data/cigarettes.csv', index_col = 'Unnamed: 0')
+data.head()
+```
+
+```
+##   state  year    cpi  population  ...     income        tax       price       taxs
+## 1    AL  1985  1.076   3973000.0  ...   46014968  32.500004  102.181671  33.348335
+## 2    AR  1985  1.076   2327000.0  ...   26210736  37.000000  101.474998  37.000000
+## 3    AZ  1985  1.076   3184000.0  ...   43956936  31.000000  108.578751  36.170418
+## 4    CA  1985  1.076  26444000.0  ...  447102816  26.000000  107.837341  32.104000
+## 5    CO  1985  1.076   3209000.0  ...   49466672  31.000000   94.266663  31.000000
+## 
+## [5 rows x 9 columns]
+```
+
+
+
+
+
+
+
 
 Understanding how to use python as a calculator can be a useful starting point. Simple arithmetic operations are straightforward. We can use the `print()` function to see the output of these arithmetic operations. Below are some examples of using the addition, subtraction, multiplication, division, exponentiation and remainder operator on 2 arbitrary numbers.
 
