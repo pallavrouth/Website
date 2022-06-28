@@ -63,8 +63,8 @@ In python:
 ```{python}
 (
   data
-    .loc[:,['state','year','population']] # <-- select
-    .loc[lambda d : d.state.isin(['AL','AZ','VT'])] # <-- filter
+    .loc[:,['state','year','population']] 
+    .loc[lambda d : d.state.isin(['AL','AZ','VT'])] 
     .head()
 )
 ```
@@ -74,6 +74,8 @@ In python, you need to do two things to employ chaining : (1) use a parenthesis 
 Now, lets look at some common set of operations in `dplyr`.
 
 ## Select, filter and sort
+
+The first advanced operation is selecting columns following by filtering some rows followed by sorting. The sequence may not be same in all scenarios. 
 
 In R:
 
@@ -89,7 +91,7 @@ In python:
 
 ```{python}
 (data
-  .loc[:,['state','year','population']] # <-- select
+  .loc[:,['state','year','population']] 
   .loc[lambda d : (d.state.isin(['AL','AZ','VT'])) & (d.population > 10e3)] 
   .sort_values(['population'])
   .head()) 
@@ -99,16 +101,16 @@ For multiple selections, I prefer using `query` instead of `loc`.
 
 ```{python}
 (data
-  .loc[:,['state','year','population']] # <-- select
-  .query('(population > 10e3) and (state in ["AL","AZ","VT"])') # <-- filters
+  .loc[:,['state','year','population']] 
+  .query('(population > 10e3) and (state in ["AL","AZ","VT"])') 
   .sort_values(['population'])
   .head())
 ```
 
 
-## Mutate and group by
+## Mutate, groupby and summarize
 
-Let's group by and find maximum within each group.
+Another common advanced operation is mutate, groupby and then summarize. In this type of operation, you want to first create some column and then summarize that column within each group. Let's groupby and find maximum within each group.
 
 In R: 
 
@@ -126,13 +128,13 @@ In python:
 ```{python}
 (data[['state','year','population']] # <-- select
   .assign(population_1000 = lambda d : d.population / 1000) # <-- mutate
-  .groupby('state') # <-- groupby
-    .population_1000 # <-- apply summarize to this col
+  .groupby('state') 
+    .population_1000 
     .max()
   .head())
 ```
 
-Using `aggregate` instead
+Using `aggregate` function instead of `max`. 
 
 ```{python}
 (data[['state','year','population','packs']]
@@ -142,7 +144,9 @@ Using `aggregate` instead
   .head())
 ```
 
-## Group by and mutate
+## Groupby and mutate
+
+Another advanced operation is groupby followed by mutate. In this type of operations, you want to apply some operation with every group. 
 
 In R:
 
@@ -155,7 +159,6 @@ py$data %>%
   ungroup() %>% 
   head(.,5)
 ```
-
 
 In python:
 
@@ -180,6 +183,8 @@ Alternatively,
 
 ## Conditional mutate - ifelse
 
+Another common type of advanced operation is conditional mutate. Here you want to create a column based on a condition that applies to another column(s).
+
 In R:
 
 ```{r}
@@ -200,5 +205,26 @@ In python:
   .head())
 ```
 
-
 In my humble opinion, I think `dplyr` syntax is way more intuitive than `pandas`.
+
+## Multiple mutate
+
+Sometimes, one needs to apply the same mutating function to multiple columns. Its rather cumbersome to repeat the same operation individually to every column. 
+
+In R:
+
+```{r}
+py$data %>% 
+  select(population,packs,income,tax) %>%
+  mutate(across(population:tax,~log(. + 1),.names = "log_{col}"))
+```
+
+In python:
+
+```{python}
+(data
+  .assign(population_1000 = lambda d : d.population / 1000,
+          ifelsecol = lambda d : np.where(d.packs > 120, "> 120","< 120"))
+  .head())
+```
+
