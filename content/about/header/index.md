@@ -9,7 +9,9 @@ headline: |
 <!-- this is a subheadline -->
 I am a Ph.D. student in the [department of marketing](https://business.utsa.edu/department-of-marketing/) at the University of Texas at San Antonio. I'm extremely fond of statistical programming and I frequently find myself using R to answer intriguing research questions within my field. 
 
-In a nutshell, my research focuses on managing interactions in a variety of business settings. And how different aspects of interactions impacts relational or performance outcomes. So, most of my work is in the relationship marketing area but I have a special interest in ideas that focus on B2B interactions and sales management, and customer relationship management.  
+In a nutshell, my research focuses on managing interactions in a variety of business settings. And how different aspects of interactions impacts relational or performance outcomes. So, most of my work is in the relationship marketing area but I have a special interest in ideas that focus on B2B interactions and sales management, and customer relationship management. 
+
+<i class='fa fa-file-pdf-o'></i> [Resume](https://www.dropbox.com/s/8974odaamcksq7a/Curriculum%20Vitae.pdf?dl=0)
 
 <i class="fas fa-graduation-cap pr2"></i>M.S. in ASOR  &#8729; Bowling Green State University  &#8729;  2018
 

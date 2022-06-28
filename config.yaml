@@ -103,7 +103,7 @@ menu:
     - name: Research
       title: Research
       url: /research/
-      weight: 3  
+      weight: 4  
 privacy:
   disqus:
     disable: no
