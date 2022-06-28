@@ -19,7 +19,7 @@ show_post_thumbnail: true
 show_post_time: true
 sidebar:
   author: Pallav
-  description: Talks or workshops I have given
+  description: My talks and workshops 
   show_sidebar_adunit: false
   text_link_label: 
   text_link_url: /talk/index.xml
