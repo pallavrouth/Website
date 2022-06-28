@@ -16,10 +16,6 @@ tags:
 
 
 
-```r
-data("FANG", package = "tidyquant")
-```
-
 In an earlier post I demonstrate how `ggplot` can be used to replicate Matlab style plots. In this short post I demonstrate how to apply the same design to `ggplot2` facets.
 
 Here is the "scientific" theme from the previous post
@@ -43,10 +39,12 @@ theme_scientific <-
         strip.placement = "outside")
 ```
 
-Let's use this theme to create our facetted plot. In this example, we will create a time series plot showing historical stock prices for 4 major companies -
+Let's use this theme to create our facetted plot. In this example, we will create a time series plot showing historical stock prices for 4 major companies using the `FANG` dataset -
 
 
 ```r
+data("FANG", package = "tidyquant")
+
 FANG %>% 
   group_by(symbol) %>% 
     mutate(`time period` = 1:n()) %>% 
@@ -57,9 +55,11 @@ FANG %>%
    theme_scientific
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-Next, lets create function that supplies breaks and limits for the x and y axis -
+A major issue with using `facets` is that one cannot pick custom breaks and limits for the axis of each facet (let alone automating it). Thankfully, there is a funcation called `facetted_pos_scales()` from the `ggh4x` package that lets you do that.
+
+To use this function, we need to  custom breaks and limits for each facet. However a better approach would be to automate this task. Lets create a function that create such breaks and limits for the x and y axis -
 
 
 ```r
@@ -83,7 +83,7 @@ auto_lims <- function(breakvals) {
 }
 ```
 
-Below, I apply the functions to the data
+Now all I need to do is filter the data from each company in `FANG` and feed it to the above function. Here is one way you can do that `
 
 
 ```r
@@ -119,7 +119,9 @@ FANG %>%
 ```
 
 
-It works! It chooses breaks and limits for each company.
+It works! It chooses breaks and limits for each company. 
+
+Now the trick is to save these breaks into a list and then use it within `facetted_pos_scales()` from the `ggh4x` package.
 
 
 ```r
@@ -158,4 +160,6 @@ FANG %>%
   }
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+
+Here is the final plot. Beautiful! 
