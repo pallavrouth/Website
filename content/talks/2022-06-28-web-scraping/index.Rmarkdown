@@ -1,5 +1,7 @@
 ---
-title: "Web Scraping"
+title: "Web Scraping in R"
+subtitle: "Webscraping using rvest and rselenium"
+excerpt: "Tips and tricks to scrape text rvest and rselenium"
 author: Pallav Routh
 date: '2022-02-10'
 slug: 
@@ -10,4 +12,74 @@ tags:
   - wrangling
 ---
 
-Add content here
+Required packages
+
+```{r}
+library(rvest)
+library(magrittr)
+```
+
+Reading in HTML
+
+```{r}
+
+url <- 'https://cran.r-project.org/web/views/Robust.html'
+html <- read_html(url)
+```
+
+Navigating nodes using css
+
+```{r}
+p_tags <- html_nodes(html,css = "p")
+p_tagsx <- html_nodes(html,xpath = '//p')
+all.equal(p_tags,p_tagsx)
+```
+
+Navigate further down the HTML DOM
+
+```{r}
+p_strong_tags <- html_nodes(p_tags,css = "strong")
+```
+
+Access information in certain nodes
+
+```{r}
+html_text(p_strong_tags)
+html_text(p_strong_tags,trim = T)
+```
+
+```{r}
+# accessing attributes - e.g. links encoded in hrefs
+ul_tags <- html_nodes(html,css = "ul")
+# accessing a particular node - see the object in R session
+ul_tags[[3]]
+# inspect further down the tree
+html_children(html_nodes(ul_tags[[3]],css = "li"))
+html_nodes(ul_tags[[3]],css = "li a")
+# inspect
+html_children(html_nodes(ul_tags[[3]],css = "li a")) #no more divisions
+unlist(html_attrs(html_nodes(ul_tags[[3]],css = "li a")))
+href_tags <- html_attr(html_nodes(ul_tags[[3]],css = "li a"),"href")
+# same thing using xpath... but be careful
+html_nodes(html,xpath = "//ul[3]/li/a")
+href_tags <- html_attr(html_nodes(ul_tags[[3]],xpath = "//ul[3]/li/a"),"href")
+```
+
+'tidy' version by infusing pipes
+
+```{r}
+href_tags <-
+  html %>%
+  html_nodes(xpath = "//div/ul[3]/li/a") %>%
+  html_attr("href")
+
+# task : get all hrefs and follow then and get the titles (optional)
+gethref <- function(x){
+  hrefs <- x %>%
+    html_nodes(css = "li a") %>%
+    html_attr("href")
+  if (length(hrefs) == 0){return(NA)} 
+  else {return(hrefs)}
+}
+```
+
