@@ -7,14 +7,8 @@ headline: |
 ---
 
 <!-- this is a subheadline -->
-I am a Ph.D. student in the [department of marketing](https://business.utsa.edu/department-of-marketing/) at the University of Texas at San Antonio. I'm extremely fond of statistical programming and I frequently find myself using R to answer intriguing research questions within my field. 
+I am a Ph.D. student in the [department of marketing](https://business.utsa.edu/department-of-marketing/) at the University of Texas at San Antonio. I'm extremely fond of statistical programming and I frequently find myself using R (and sometimes Python) to answer intriguing research questions within my field. 
 
-In a nutshell, my research focuses on managing interactions in a variety of business settings. And how different aspects of interactions impacts relational or performance outcomes. So, most of my work is in the relationship marketing area but I have a special interest in ideas that focus on B2B interactions and sales management, and customer relationship management. 
+As an aspiring marketing strategy scholar, I have always been drawn to ideas that address critical, strategic, and/or novel issues facing managers, marketers, and key decision-makers. In particular, issues that center around managing dynamic interactions between customers or between firms, pique my interest. My current research addresses some of these issues on online platform markets and organizational frontlines and how it impacts relational outcomes. 
 
-<i class='fa fa-file-pdf-o'></i> [Resume](https://www.dropbox.com/s/8974odaamcksq7a/Curriculum%20Vitae.pdf?dl=0)
-
-<i class="fas fa-graduation-cap pr2"></i>M.S. in ASOR  &#8729; Bowling Green State University  &#8729;  2018
-
-<i class="fas fa-graduation-cap pr2"></i>P.G.D in Marketing and Sales Management  &#8729; St. Xaviers College  &#8729;  2016
-
-<i class="fas fa-graduation-cap pr2"></i>B.S. in Chemistry  &#8729; St. Xaviers College  &#8729;  2013
+My ongoing research projects examine how C2C platform managers and B2B sales representatives manage interactions with customers by implementing strategies that improve the quality of interactions or by implementing actions that build and maintain relationships.
