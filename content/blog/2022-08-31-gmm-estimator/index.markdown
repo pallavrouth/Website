@@ -1,9 +1,9 @@
 ---
-title: 'Inner Workings of the GMM Estimator'
+title: 'Inner Workings of the GMM Estimator (Part 1)'
 subtitle: "How does the GMM estimator work?"
 excerpt: "This blog post demonstrates how the mechanism of GMM estimation. I construct a GMM estimator from scratch to demonstrate its basic principles"
 author: Pallav Routh
-date: '2022-05-26'
+date: '2022-03-22'
 slug: 
   - gmm-estimator
 categories:
