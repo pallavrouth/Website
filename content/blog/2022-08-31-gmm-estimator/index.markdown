@@ -22,7 +22,7 @@ When we use this method in practice, the steps involved in GMM estimation are ha
 
 In this blog post, I go behind the scenes of a GMM estimator to illustrate the steps involved in this method. This will help you draw a connection between how this estimator is described in textbooks and how it really delivers results. I have split this topic into two parts. In this part I illustrate how an MM estimator works in the light of a regression problem. 
 
-# A simple problem
+## A simple problem
 
 We will start by focusing on a simple econometric problem where we don't need to use the generalized version of method of moments. Instead, a method of moments (MM) estimator is sufficient. We will build an MM estimator for obtaining the estimates of a multiple regression model.
 
@@ -59,7 +59,9 @@ x[1:5,]
 ## [5,]    1   8  360 3.440
 ```
 
-First, I use ordinary least squares (OLS) method^[The coefficients of the OLS model is estimated by performing the following matrix operation - `\((x^\top x)^{-1}x^\top y\)`, where `\(x\)` and `\(y\)` represent the matrices of IV and DV.] to calculate the coefficients of the above model. I perform this matrix operation below to obtain my OLS estimates.
+First, I use ordinary least squares (OLS) method[^1]  to calculate the coefficients of the above model. I perform this matrix operation below to obtain my OLS estimates.
+
+[^1]: The coefficients of the OLS model is estimated by performing the following matrix operation - `\((x^\top x)^{-1}x^\top y\)`, where `\(x\)` and `\(y\)` represent the matrices of IV and DV.
 
 
 ```r
@@ -75,9 +77,11 @@ ols_par
 
 Now, we will see how to estimate the above parameters using an MM estimator.
 
-# The MM OLS estimator  
+## The MM OLS estimator  
 
-Before getting to an MM estimator, first lets take a look at what the moment conditions (or moment equations or simply moments) look like for a linear regression problem. The *population moments*^[Sometimes the population moments are referred to as *theoretical* moments because they are only realized in theory.] in a regression problem is defined as `\(E(\mathbf{x}e) = 0\)` where `\(\mathbf{x}\)` represents all predictors and `\(e\)` represents residuals. Let's understand the moving parts of this simple equation in the light of our current model.
+Before getting to an MM estimator, first lets take a look at what the moment conditions (or moment equations or simply moments) look like for a linear regression problem. The *population moments*[^2] in a regression problem is defined as `\(E(\mathbf{x}e) = 0\)` where `\(\mathbf{x}\)` represents all predictors and `\(e\)` represents residuals. Let's understand the moving parts of this simple equation in the light of our current model.
+
+[^2]: Sometimes the population moments are referred to as *theoretical* moments because they are only realized in theory.
 
 The first aspect of the definition is the matrix of predictors `\(\mathbf{x}\)` which we have already created in one of the code chunks above. The other aspect of the definition, is the matrix of residuals. In a linear model `\(y = \mathbf{x^\top \beta} + e\)`, realize that residuals can be expressed as a function of `\(y\)`, `\(\beta\)` and `\(x\)` : `\(e = y - \mathbf{x^\top \beta}\)`. We use the same expression for representing `\(e\)` in our moment equation. 
 
@@ -94,7 +98,9 @@ params <- rep(0.1,4)
 ## [1]   4.0380   4.0125  11.2680  -5.4215 -18.5440
 ```
 
-The numbers^[If you predicted the DV `mpg` based on the regression model - `\(0.1 + 0.1cyl_i + 0.1disp_i + 0.1wt_i\)` and then subtracted the predictions from the original DV, you would get these numbers] represent residuals for the first 5 rows in the data.
+The numbers[^3] represent residuals for the first 5 rows in the data.
+
+[^3]: If you predicted the DV `mpg` based on the regression model - `\(0.1 + 0.1cyl_i + 0.1disp_i + 0.1wt_i\)` and then subtracted the predictions from the original DV, you would get these numbers
 
 We have all the moving parts ready to create the moment conditions for our problem. Mathematically, what would these moments look like? Since we have 4 parameters ($\beta_0,\beta_1,\beta_2,\beta_3$) we will have 4 moment conditions. In the language of our definition above, these moment conditions look like this -
 
@@ -105,7 +111,7 @@ We have all the moving parts ready to create the moment conditions for our probl
 (mpg_i - \beta_0 + \beta_1cyl_i + \beta_2disp_i + \beta_3wt_i)&\times cyl_i \\
 (mpg_i - \beta_0 + \beta_1cyl_i + \beta_2disp_i + \beta_3wt_i)&\times disp_i \\
 (mpg_i - \beta_0 + \beta_1cyl_i + \beta_2disp_i + \beta_3wt_i)&\times wt_i
-\end{array}\right) = 0 $$
+\end{array}\right) = 0$$`
 
 So, multiplying the residuals with the 4 IVs, one by one, and then taking the expectation would help us get our 4 moment conditions. I create the product of IVs and residuals below,
 
@@ -143,7 +149,7 @@ These 4 numbers represent the sample moments corresponding to our choice of para
 
 Finally, we are in a position to define our MM estimator for linear regression. It is the *squared sum* of our sample moments. In matrix notation it can be written as - 
 
-$$  [1/n \sum_i \{\mathbf{x}_i\times e_i(\beta) \}^\top][\{1/n \sum_i \{\mathbf{x}_i\times e_i(\beta)\}] $$
+`$$[1/n \sum_i \{\mathbf{x}_i\times e_i(\beta) \}^\top][\{1/n \sum_i \{\mathbf{x}_i\times e_i(\beta)\}]$$`
 
 Below, I take the sample moments and find out it's squared sum.
 
@@ -164,7 +170,9 @@ This number is the value of the estimator for our choice of beta `\(=\{0.1,0.1,0
 
 In theory, this step is equivalent to finding out the derivative of our estimator with respect to beta and solving for it by setting it equal to 0. For simple regression problems, it is possible to find out an exact analytical expression for the beta that solves the above equation. However, finding out derivatives analytically becomes impossible for more complicated problems. In such cases, numerical methods are used to find solutions to derivatives. 
 
-So even though an analytical expression exists for our linear regression problem, I use numerical methods. Below, I use a built-in method in R called `optim`^[`optim` is a R function that helps to solve any general purpose optimization problem. The function takes as an argument starting values for parameters to be estimated and the function that needs to be optimized.] to find out the set of beta values that makes the value of our MM estimator 0.
+So even though an analytical expression exists for our linear regression problem, I use numerical methods. Below, I use a built-in method in R called `optim`[^4] to find out the set of beta values that makes the value of our MM estimator 0.
+
+[^4]: `optim` is a R function that helps to solve any general purpose optimization problem. The function takes as an argument starting values for parameters to be estimated and the function that needs to be optimized.
 
 
 ```r
