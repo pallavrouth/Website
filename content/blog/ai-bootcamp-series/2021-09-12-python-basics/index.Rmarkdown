@@ -1,7 +1,7 @@
 ---
 title: 'Advanced Pandas'
 subtitle: "Dplyr style coding in Pandas"
-excerpt: "Using Pandas to chain operations"
+excerpt: "Using Pandas to chain operations similar to piping operations in dplyr in R"
 author: Pallav Routh
 date: '2021-09-12'
 slug: 

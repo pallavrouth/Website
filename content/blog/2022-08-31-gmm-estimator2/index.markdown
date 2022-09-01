@@ -31,7 +31,7 @@ Previously, we used an MM estimator to estimate the parameters of the following 
 
 We defined the MM estimator as follows - 
 
-$$  [1/n \sum_i \{\mathbf{x}_i\times e_i(\beta) \}^\top][\{1/n \sum_i \{\mathbf{x}_i\times e_i(\beta)\}] $$
+`$$[1/n \sum_i \{\mathbf{x}_i\times e_i(\beta) \}^\top][\{1/n \sum_i \{\mathbf{x}_i\times e_i(\beta)\}]$$`
 
 And we chose the value of betas that minimizes the value of the estimator above - 
 
@@ -188,7 +188,9 @@ two_step <- function(params){
 }
 ```
 
-I implement the 2 step estimator on our simple regression problem^[Note that it is not necessary to do so (because we can simply use our MM estimator), but I implement it anyway].
+I implement the 2 step estimator on our simple regression problem[^2].
+
+[^2]: Note that it is not necessary to do so (because we can simply use our MM estimator), but I implement it anyway
 
 
 ```r
@@ -289,12 +291,12 @@ Given `\(e\)` and `\(\mathbf{z}\)`, we can finally express our moment conditions
 (logpacks_i - \beta_0 + \beta_1logrincome_i + \beta_2logrprice_i)&\times salestax_i \\
 (logpacks_i - \beta_0 + \beta_1logrincome_i + \beta_2logrprice_i)&\times cpi_i \\
 (logpacks_i - \beta_0 + \beta_1logrincome_i + \beta_2logrprice_i)&\times logrincome_i
-\end{array}\right) = 0 $$
+\end{array}\right) = 0$$`
 
 
-Now you can see why this estimation is overspecified - we have 4 equations above but 3 unknowns - `\(\beta_0\)`, `\(\beta_1\)` and `\(\beta_2\)`. Thus, over-specification is likely to arise in IV problems, when there are more than one instruments for an endogeneous variable[^2]. Note that in this example, if there was one instrument for our endogenous variable, our problem be exactly specified (because we would have 3 moment equations and 3 unknowns).
+Now you can see why this estimation is overspecified - we have 4 equations above but 3 unknowns - `\(\beta_0\)`, `\(\beta_1\)` and `\(\beta_2\)`. Thus, over-specification is likely to arise in IV problems, when there are more than one instruments for an endogeneous variable[^3]. Note that in this example, if there was one instrument for our endogenous variable, our problem be exactly specified (because we would have 3 moment equations and 3 unknowns).
 
-[^2]: For instrument variable regressions, when there is more than one instrument for an endogenous variable, we also refer to such a situation as *overspecification*
+[^3]: For instrument variable regressions, when there is more than one instrument for an endogenous variable, we also refer to such a situation as *overspecification*
 
 Let's see how we can use GMM to estimate the coefficients `\(\beta_0\)`, `\(\beta_1\)` and `\(\beta_2\)`. First, I create all the variables required for estimation -
 
