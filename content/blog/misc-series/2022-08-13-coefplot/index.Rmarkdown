@@ -26,7 +26,7 @@ library(glue)
 
 I have never been a fan of showing clunky long estimation tables in research presentations. In this blog post, I show how to represent the coefficient, standard error, p values and interval estimates from a typical estimation on a graph or plot. 
 
-I will continue using the "scientific" theme I had created in a previous post.
+To generate the ggplot, I will continue using the "scientific" theme I had created in a previous post.
 
 ```{r}
 theme_scientific <-
