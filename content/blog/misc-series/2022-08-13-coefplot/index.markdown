@@ -163,6 +163,7 @@ lmfit_tidy %>%
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+
 Awesome! This is so much better than reading a table.
 
 The dots represent the point estimates for each variable with the error bar representing the confidence of the point estimates. The vertical line on zero will allow readers to understand whether each estimate is significantly different from 0 (which is usually the null hypothesis). 
